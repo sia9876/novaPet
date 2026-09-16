@@ -20,6 +20,7 @@ import java.util.Collection;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Reservation;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 
@@ -48,5 +49,11 @@ public interface ClinicService {
     Collection<Owner> findOwnerByLastName(String lastName);
 
 	Collection<Visit> findVisitsByPetId(int petId);
+
+    void saveReservation(Reservation reservation);
+
+    Collection<Reservation> findReservationsByPetId(int petId);
+
+    Collection<Reservation> findAllReservations();
 
 }

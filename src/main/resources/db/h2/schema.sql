@@ -1,3 +1,4 @@
+DROP TABLE reservations IF EXISTS;
 DROP TABLE vet_specialties IF EXISTS;
 DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
@@ -62,3 +63,16 @@ CREATE TABLE visits (
 );
 ALTER TABLE visits ADD CONSTRAINT fk_visits_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
 CREATE INDEX visits_pet_id ON visits (pet_id);
+
+CREATE TABLE reservations (
+  id               INTEGER IDENTITY PRIMARY KEY,
+  pet_id           INTEGER NOT NULL,
+  vet_id           INTEGER,
+  reservation_date DATE,
+  reservation_time TIME,
+  reason           VARCHAR(255),
+  status           VARCHAR(20)
+);
+ALTER TABLE reservations ADD CONSTRAINT fk_reservations_pets FOREIGN KEY (pet_id) REFERENCES pets (id);
+ALTER TABLE reservations ADD CONSTRAINT fk_reservations_vets FOREIGN KEY (vet_id) REFERENCES vets (id);
+CREATE INDEX reservations_pet_id ON reservations (pet_id);

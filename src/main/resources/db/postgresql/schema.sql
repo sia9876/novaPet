@@ -82,3 +82,19 @@ CREATE TABLE IF NOT EXISTS visits (
 );
 
 ALTER SEQUENCE visits_id_seq RESTART WITH 100;
+
+
+CREATE TABLE IF NOT EXISTS reservations (
+  id SERIAL,
+  pet_id INT NOT NULL,
+  vet_id INT,
+  reservation_date DATE,
+  reservation_time TIME,
+  reason VARCHAR(255),
+  status VARCHAR(20),
+  FOREIGN KEY (pet_id) REFERENCES pets(id),
+  FOREIGN KEY (vet_id) REFERENCES vets(id),
+  CONSTRAINT pk_reservations PRIMARY KEY (id)
+);
+
+ALTER SEQUENCE reservations_id_seq RESTART WITH 100;

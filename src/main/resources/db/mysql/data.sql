@@ -51,3 +51,7 @@ INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+
+INSERT IGNORE INTO reservations VALUES (1, 1, 2, '2026-10-01', '09:30', 'annual checkup', 'REQUESTED');
+INSERT IGNORE INTO reservations VALUES (2, 2, NULL, '2026-10-02', '14:00', 'vaccination', 'REQUESTED');
+INSERT IGNORE INTO reservations VALUES (3, 7, 3, '2026-10-03', '11:15', 'dental cleaning', 'CONFIRMED');

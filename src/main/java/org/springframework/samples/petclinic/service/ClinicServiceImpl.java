@@ -22,10 +22,12 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
+import org.springframework.samples.petclinic.model.Reservation;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
+import org.springframework.samples.petclinic.repository.ReservationRepository;
 import org.springframework.samples.petclinic.repository.VetRepository;
 import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.stereotype.Service;
@@ -44,13 +46,15 @@ public class ClinicServiceImpl implements ClinicService {
     private VetRepository vetRepository;
     private OwnerRepository ownerRepository;
     private VisitRepository visitRepository;
+    private ReservationRepository reservationRepository;
 
     @Autowired
-    public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository) {
+    public ClinicServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository, ReservationRepository reservationRepository) {
         this.petRepository = petRepository;
         this.vetRepository = vetRepository;
         this.ownerRepository = ownerRepository;
         this.visitRepository = visitRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     @Override
@@ -109,5 +113,22 @@ public class ClinicServiceImpl implements ClinicService {
 		return visitRepository.findByPetId(petId);
 	}
 
+    @Override
+    @Transactional
+    public void saveReservation(Reservation reservation) {
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Reservation> findReservationsByPetId(int petId) {
+        return reservationRepository.findByPetId(petId);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Reservation> findAllReservations() {
+        return reservationRepository.findAll();
+    }
 
 }

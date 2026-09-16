@@ -1,0 +1,145 @@
+<mxfile host="app.diagrams.net" agent="python-generator">
+  <diagram id="petclinic-gcp-arch" name="PetClinic GCP Architecture">
+    <mxGraphModel dx="1488" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1450" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=19;fontStyle=1;fontColor=#174ea6;" value="온누리 동물병원 PetClinic — GCP 3-Tier 아키텍처 (asia-northeast3)" vertex="1">
+          <mxGeometry height="30" width="900" x="30" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="n4" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.users;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="이용자&lt;br&gt;(브라우저)" vertex="1">
+          <mxGeometry height="56" width="56" x="30" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n5" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_dns;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud DNS" vertex="1">
+          <mxGeometry height="56" width="56" x="150" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n6" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_armor;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud Armor&lt;br&gt;(WAF/DDoS)" vertex="1">
+          <mxGeometry height="56" width="56" x="270" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n7" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.https_load_balancer;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="External HTTP(S) LB&lt;br&gt;(Layer 7, Global)" vertex="1">
+          <mxGeometry height="56" width="56" x="390" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="n8" edge="1" parent="1" source="n4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n5" value="① DNS 조회">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n9" edge="1" parent="1" source="n5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n6" value="② HTTPS">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n10" edge="1" parent="1" source="n6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n7" value="③ 정책 통과">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n11" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.users;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="관리자" vertex="1">
+          <mxGeometry height="56" width="56" x="1260" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="n12" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.identity_aware_proxy;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Identity-Aware&lt;br&gt;Proxy" vertex="1">
+          <mxGeometry height="56" width="56" x="1260" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="n13" edge="1" parent="1" source="n11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n12" value="SSH 요청">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFE;strokeColor=#4285F4;dashed=1;verticalAlign=top;align=left;fontSize=14;fontStyle=1;fontColor=#1a73e8;spacingLeft=8;spacingTop=6;arcSize=3;" value="VPC network : petclinic-vpc" vertex="1">
+          <mxGeometry height="560" width="1360" x="30" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="n15" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.virtual_private_cloud;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="" vertex="1">
+          <mxGeometry height="36" width="36" x="10" y="226" as="geometry" />
+        </mxCell>
+        <mxCell id="n16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;dashed=0;verticalAlign=top;align=left;fontSize=12;fontStyle=1;fontColor=#5f6368;spacingLeft=8;spacingTop=6;arcSize=3;" value="web-subnet  10.0.1.0/24  (Public)" vertex="1">
+          <mxGeometry height="230" width="400" x="70" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="n17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FE;strokeColor=#4285F4;dashed=1;verticalAlign=top;align=left;fontSize=10.5;fontStyle=1;fontColor=#1a73e8;spacingLeft=8;spacingTop=6;arcSize=3;" value="web-mig  (Managed Instance Group, 2~6대, Multi-zone)" vertex="1">
+          <mxGeometry height="155" width="350" x="95" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="n18" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.compute_engine;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Web VM&lt;br&gt;(Rocky Linux 9, Nginx)" vertex="1">
+          <mxGeometry height="56" width="56" x="130" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="n19" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.compute_engine;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Web VM&lt;br&gt;(Rocky Linux 9, Nginx)" vertex="1">
+          <mxGeometry height="56" width="56" x="300" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="n20" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.network_load_balancer;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Internal TCP LB&lt;br&gt;(Layer 4)" vertex="1">
+          <mxGeometry height="56" width="56" x="500" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="n21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;dashed=0;verticalAlign=top;align=left;fontSize=12;fontStyle=1;fontColor=#5f6368;spacingLeft=8;spacingTop=6;arcSize=3;" value="was-subnet  10.0.2.0/24  (Private, No Public IP)" vertex="1">
+          <mxGeometry height="230" width="400" x="590" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="n22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FE;strokeColor=#4285F4;dashed=1;verticalAlign=top;align=left;fontSize=10.5;fontStyle=1;fontColor=#1a73e8;spacingLeft=8;spacingTop=6;arcSize=3;" value="was-mig  (Managed Instance Group, 2~6대, Multi-zone)" vertex="1">
+          <mxGeometry height="155" width="350" x="615" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="n23" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.compute_engine;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="WAS VM&lt;br&gt;(Rocky Linux 9, Tomcat9+JDK8)" vertex="1">
+          <mxGeometry height="56" width="56" x="650" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="n24" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.compute_engine;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="WAS VM&lt;br&gt;(Rocky Linux 9, Tomcat9+JDK8)" vertex="1">
+          <mxGeometry height="56" width="56" x="830" y="395" as="geometry" />
+        </mxCell>
+        <mxCell id="n25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#9AA0A6;dashed=0;verticalAlign=top;align=left;fontSize=12;fontStyle=1;fontColor=#5f6368;spacingLeft=8;spacingTop=6;arcSize=3;" value="db-subnet  10.0.3.0/24  (Private, No Public IP)" vertex="1">
+          <mxGeometry height="230" width="330" x="1030" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="n26" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_sql;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud SQL for MySQL 8.0&lt;br&gt;(Private IP, Primary+Standby)" vertex="1">
+          <mxGeometry height="56" width="56" x="1160" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="n27" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n18" value="트래픽 분산 (80)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n28" edge="1" parent="1" source="n7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n29" edge="1" parent="1" source="n18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n20" value="8080">
+          <mxGeometry relative="1" x="0.1848" y="-2" as="geometry">
+            <mxPoint x="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n30" edge="1" parent="1" source="n19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n20" value="8080">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n31" edge="1" parent="1" source="n20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n23" value="8080">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n32" edge="1" parent="1" source="n20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n24" value="8080">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n33" edge="1" parent="1" source="n23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n26" value="3306 (Private IP)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n34" edge="1" parent="1" source="n24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n35" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#9AA0A6;dashed=1;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n18" value="SSH 터널">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n36" edge="1" parent="1" source="n12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#9AA0A6;dashed=1;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n23" value="SSH 터널">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n37" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_router;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud Router" vertex="1">
+          <mxGeometry height="56" width="56" x="95" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n38" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_nat;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud NAT" vertex="1">
+          <mxGeometry height="56" width="56" x="210" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n39" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_firewall_rules;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud Firewall Rules&lt;br&gt;(최소권한 5종)" vertex="1">
+          <mxGeometry height="56" width="56" x="430" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n40" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_iam;fontSize=9.5;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud IAM&lt;br&gt;(web-sa / was-sa / db-sa)" vertex="1">
+          <mxGeometry height="56" width="56" x="650" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n41" parent="1" style="sketch=0;html=1;aspect=fixed;strokeColor=none;shadow=0;fillColor=#4285F4;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;shape=mxgraph.gcp2.cloud_monitoring;fontSize=11;fontColor=#202124;fontStyle=0;spacingTop=4;" value="Cloud Monitoring&lt;br&gt;/ Logging" vertex="1">
+          <mxGeometry height="56" width="56" x="870" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="n42" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#9AA0A6;dashed=1;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" value="패치 등 아웃바운드">
+          <mxGeometry relative="1" x="0.2727" y="7" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="648" y="423.0526315789475" as="sourcePoint" />
+            <mxPoint x="236.00000000000023" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n43" edge="1" parent="1" source="n38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;endFill=1;strokeColor=#5f6368;dashed=0;fontSize=10;fontColor=#3c4043;labelBackgroundColor=#ffffff;jettySize=auto;orthogonalLoop=1;" target="n37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n44" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontStyle=0;fontColor=#5f6368;" value="→ 인터넷 (아웃바운드 전용, 인바운드 불가)" vertex="1">
+          <mxGeometry height="24" width="220" x="95" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="n45" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=0;fontColor=#5f6368;" value="※ 아이콘은 draw.io 공식 Google Cloud Platform 아이콘 세트(mxgraph.gcp2)만 사용했습니다.&lt;br&gt;※ Secret Manager는 이 아이콘 세트에 별도 아이콘이 없어 Cloud IAM 보안 경계에 포함해 텍스트로 표기했습니다(다른 아키텍처 요소 추가 없음)." vertex="1">
+          <mxGeometry height="46" width="1300" x="70" y="745" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
